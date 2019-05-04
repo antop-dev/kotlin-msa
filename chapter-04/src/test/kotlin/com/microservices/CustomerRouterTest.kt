@@ -1,5 +1,6 @@
 package com.microservices
 
+import org.hamcrest.Matchers
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,31 +17,34 @@ import reactor.core.publisher.Mono
 @RunWith(SpringRunner::class)
 @SpringBootTest
 @AutoConfigureWebTestClient
-class CustomerControllerTest {
+class CustomerRouterTest {
+
     @Autowired
     private lateinit var webClient: WebTestClient
 
     @Test
-    fun getCustomer() {
-        webClient.get().uri("/customer/2").exchange().expectStatus().isOk
+    fun get() {
+        webClient.get().uri("/functional/customer/2").exchange().expectStatus().isOk
                 .expectBody<Customer>().isEqualTo(Customer(2, "Spring"))
     }
 
     @Test
-    fun getCustomers() {
-        val list = webClient.get().uri("/customers").exchange().expectStatus().isOk
+    fun search() {
+        val list = webClient.get().uri("/functional/customers").exchange().expectStatus().isOk
                 .expectBodyList<Customer>().returnResult().responseBody
-        assertEquals("Kotlin", list[0].name)
+        assertEquals("Spring", list[1].name)
     }
 
     @Test
-    fun createCustomer() {
+    fun create() {
         val customer = Customer(4, "New Customer", Telephone("+41", "1234567890"))
         webClient.post()
-                .uri("/customer")
+                .uri("/functional/customer")
                 .body(Mono.just(customer), Customer::class.java)
                 .header(HttpHeaders.CONTENT_TYPE, "application/json")
-                .exchange().expectStatus().isCreated
-    }
+                .exchange()
+                .expectStatus().isCreated
+                .expectHeader().value("Location", Matchers.equalTo("/functional/customer/${customer.id}"))
 
+    }
 }
