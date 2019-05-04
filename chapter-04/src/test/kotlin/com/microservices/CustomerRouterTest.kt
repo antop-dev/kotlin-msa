@@ -47,4 +47,21 @@ class CustomerRouterTest {
                 .expectHeader().value("Location", Matchers.equalTo("/functional/customer/${customer.id}"))
 
     }
+
+    @Test
+    fun createExist() {
+        val customer = Customer(1, "New Customer", Telephone("+41", "1234567890"))
+        webClient.post()
+                .uri("/functional/customer")
+                .body(Mono.just(customer), Customer::class.java)
+                .header(HttpHeaders.CONTENT_TYPE, "application/json")
+                .exchange()
+                .expectStatus().isBadRequest
+                .expectBody<ErrorResponse>()
+                .isEqualTo(
+                        ErrorResponse("error creating customer", "Customer ${customer.id} already exist")
+                )
+
+    }
+
 }
