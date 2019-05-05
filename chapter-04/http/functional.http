@@ -30,3 +30,39 @@ Content-Type: application/json
 }
 
 ###
+
+#
+# 잘못된 JSON 포멧 요청
+#
+
+POST http://localhost:8804/functional/customer
+Content-Type: application/json
+
+{
+  "id": 119,
+  "name": "New aaaaaaaaaa",
+  "telephone": {
+    "countryCode": "+44",
+    "telephoneNumber": "7123456789"
+  }
+} bad json '
+
+###
+
+#
+# 이미 있는 고객 등록
+#
+
+POST http://localhost:8804/functional/customer
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "New Customer",
+  "telephone": {
+    "countryCode": "+44",
+    "telephoneNumber": "7123456789"
+  }
+}
+
+###
