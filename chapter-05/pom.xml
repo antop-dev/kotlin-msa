@@ -13,7 +13,7 @@
     <packaging>jar</packaging>
 
     <name>chapter-05</name>
-    <description>5장. 리액티브 스프링 데이터</description>
+    <description>리액티브 스프링 데이터</description>
 
     <dependencies>
         <dependency>
