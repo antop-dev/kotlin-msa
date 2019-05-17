@@ -3,13 +3,8 @@ package com.microservices.chapter04
 import org.hamcrest.Matchers
 import org.junit.Assert.assertEquals
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.TestWatcher
-import org.junit.runner.Description
 import org.junit.runner.RunWith
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
 import org.springframework.boot.test.context.SpringBootTest
@@ -25,21 +20,6 @@ import reactor.core.publisher.Mono
 @SpringBootTest
 @AutoConfigureWebTestClient
 class CustomerRouterTest {
-    val logger: Logger = LoggerFactory.getLogger(CustomerRouterTest::class.java)
-
-    @Rule
-    @JvmField
-    val watchman: TestWatcher = object : TestWatcher() {
-        override fun starting(description: Description?) {
-            logger.info("Run Test {}...", description)
-        }
-        override fun succeeded(description: Description?) {
-            logger.info("Test {} succeeded.", description)
-        }
-        override fun failed(e: Throwable?, description: Description?) {
-            logger.error("Test {} failed with {}.", description, e)
-        }
-    }
 
     @Autowired
     private lateinit var webClient: WebTestClient

@@ -21,6 +21,7 @@
         <module>chapter-02</module>
         <module>chapter-03</module>
         <module>chapter-04</module>
+        <module>chapter-05</module>
     </modules>
 
     <repositories>
@@ -136,7 +137,21 @@
                 </executions>
                 <configuration>
                     <jvmTarget>1.8</jvmTarget>
+                    <!-- https://stackoverflow.com/questions/52599769/spring-kotlin-bean-fields-are-null-at-runtime-despite-being-injected-during-in -->
+                    <!-- https://dzone.com/articles/open-your-classes-and-methods-in-kotlin -->
+                    <!-- https://blog.frankel.ch/open-your-classes-and-methods-in-kotlin/ -->
+                    <compilerPlugins>
+                        <plugin>spring</plugin>
+                    </compilerPlugins>
                 </configuration>
+                <dependencies>
+                    <!-- https://www.baeldung.com/kotlin-allopen-spring -->
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-allopen</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
