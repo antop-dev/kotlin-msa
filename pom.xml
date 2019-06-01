@@ -23,6 +23,7 @@
         <module>chapter-04</module>
         <module>chapter-05</module>
         <module>chapter-06-microservice</module>
+        <module>chapter-06-configserver</module>
     </modules>
 
     <repositories>
@@ -35,6 +36,7 @@
     <properties>
         <java.version>1.8</java.version>
         <kotlin.version>1.3.31</kotlin.version>
+        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
     </properties>
 
     <dependencies>

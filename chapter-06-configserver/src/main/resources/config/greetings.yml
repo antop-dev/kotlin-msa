@@ -1,0 +1,5 @@
+microservice:
+  example:
+    # greetings: "{cipher}f5be2c4d2295db6a8ad88282485af061f7dd5c5b7d749e132884765d768c4229"
+    # 여러가지 상황의 것을 쓰게 되면 암호화 되어 있는 것이 먼저 쓰인다?!
+    greetings: "hello from default profile"
