@@ -15,6 +15,10 @@
     <name>chapter-06-microservice</name>
     <description>스프링 클라우드 마이크로서비스</description>
 
+    <properties>
+        <maven.test.skip>true</maven.test.skip>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
