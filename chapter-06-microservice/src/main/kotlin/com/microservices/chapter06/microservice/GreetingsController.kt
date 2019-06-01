@@ -10,5 +10,8 @@ class GreetingsController {
     private lateinit var greetings: String
 
     @GetMapping("/greetings")
-    fun greetings() = greetings
+    fun greetings(): String {
+        println("request greetings.")
+        return greetings
+    }
 }

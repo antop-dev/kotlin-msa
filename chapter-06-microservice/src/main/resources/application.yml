@@ -4,10 +4,10 @@ spring:
 
 logging:
   level:
-    org.springframework: debug
+    org.springframework: info
 
 server:
-  port: 8860
+  port: 8869
 
 eureka:
   client:

@@ -8,10 +8,10 @@
         <version>0.0.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>chapter-06-discoveryserver</artifactId>
+    <artifactId>chapter-06-gateway</artifactId>
 
-    <name>chapter-06-discoveryserver</name>
-    <description>서비스 탐색</description>
+    <name>chapter-06-gateway</name>
+    <description>게이트웨이</description>
 
     <properties>
         <maven.test.skip>true</maven.test.skip>
@@ -20,7 +20,15 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
         </dependency>
     </dependencies>
 
