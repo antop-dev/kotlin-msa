@@ -22,6 +22,7 @@
         <module>chapter-03</module>
         <module>chapter-04</module>
         <module>chapter-05</module>
+        <module>chapter-06-microservice</module>
     </modules>
 
     <repositories>
