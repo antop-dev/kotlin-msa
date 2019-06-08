@@ -20,4 +20,8 @@
  
 이 책에서는 다양한 클라우드 환경에서 실행할 수 있는 클라우드 네이티브 마이크로서비스(Cloud Native Microservice)를 만드는 방법과 이를 모니터링하는 방법을 알려준다.
  
-마이크로서비스용 도커(Docker) 컨테이너(Container)를 만들고 이를 확장하는 방법을 알 수 있다. 마지막으로, 오픈시프트 온라인(Openshift Online)에 마이크로서비스를 배포한다. 
+마이크로서비스용 도커(Docker) 컨테이너(Container)를 만들고 이를 확장하는 방법을 알 수 있다. 마지막으로, 오픈시프트 온라인(Openshift Online)에 마이크로서비스를 배포한다.
+
+## Chapter 07
+
+https://gist.github.com/styblope/dc55e0ad2a9848f2cc3307d4819d819f
