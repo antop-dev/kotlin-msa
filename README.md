@@ -43,3 +43,27 @@ https://www.jetbrains.com/help/idea/docker.html
 
 * `<port>` 매핑이 안된다.
 
+## Chapter 08
+
+* `Ubuntu 16 + Docker` 에서 `pull` 안됨... ㅜㅜ
+
+```
+> docker tag hello localhost:5000/hello
+> docer push localhost:5000/hello 
+The push refers to repository [localhost:5000/hello]
+Get http://localhost:5000/v2/: net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+```
+
+그래서 일단은 개인 `Dockerhub`에 올림..
+
+```
+> docker tag hello antop/hello
+> docer push antop/hello
+The push refers to repository [docker.io/antop/hello]
+6efafc80bd56: Pushed
+ceaf9e1ebef5: Mounted from library/openjdk
+9b9b7f3d56a0: Pushed
+f1b5933fe4b5: Mounted from library/alpine
+latest: digest: sha256:a0062ba9dc62015e137500d5b9d61428359197aa498ecfe3601ada2335ea22e4 size: 1159
+```
+
