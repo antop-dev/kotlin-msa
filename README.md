@@ -45,6 +45,8 @@ https://www.jetbrains.com/help/idea/docker.html
 
 ## Chapter 08
 
+https://swarmpit.io/
+
 * `Ubuntu 16 + Docker` 에서 `pull` 안됨... ㅜㅜ
 
 ```
@@ -67,3 +69,4 @@ f1b5933fe4b5: Mounted from library/alpine
 latest: digest: sha256:a0062ba9dc62015e137500d5b9d61428359197aa498ecfe3601ada2335ea22e4 size: 1159
 ```
 
+또는 `127.0.0.1:5000/hello`로 사용 가능.
