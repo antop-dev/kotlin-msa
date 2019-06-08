@@ -21,4 +21,25 @@
 
 ## Chapter 07
 
-https://gist.github.com/styblope/dc55e0ad2a9848f2cc3307d4819d819f 
+Windows 10 Home 환경에서느 `Docker for Windows` 설치가 안된다. 그래서 VMWare에 `Ubuntu 16 + Docker` 설치하고 원격으로 제어한다. 
+
+https://gist.github.com/styblope/dc55e0ad2a9848f2cc3307d4819d819f
+
+https://www.jetbrains.com/help/idea/docker.html
+
+### [docker-maven-plugin](https://github.com/fabric8io/docker-maven-plugin) 이슈
+
+* Dockerfile 위치 관련 이슈
+    
+    `<build>` → `<dockerFileDir>` 안먹힌다. `<dockerFile>', '<contextDir>`도 안먹힌다.
+
+    결국 `Dockerfile`을 프로젝트 루트에 위치 시키면 자동 인식이 된다. ㅠㅠ
+
+    https://dmp.fabric8.io/#external-dockerfile
+    
+* `<image>` 에서 `<name>`을 원하는 대로 설정할 수 없다.
+    
+    무조건 `${groupId}/${articleId}/${version}`으로 생성된다.
+
+* `<port>` 매핑이 안된다.
+

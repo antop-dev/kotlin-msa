@@ -33,6 +33,40 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- http://dmp.fabric8.io/ -->
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.30.0</version>
+                <configuration>
+                    <dockerHost>http://192.168.2.128:2375</dockerHost>
+                    <images>
+                        <image>
+                            <!-- 원하는 이름으로 안된다 -->
+                            <name>antop/chapter-07</name>
+                            <alias>chapter-07</alias>
+                            <build>
+                                <maintainer>antop@naver.com</maintainer>
+                                <assembly>
+                                    <descriptorRef>artifact</descriptorRef>
+                                </assembly>
+                                <tags>
+                                    <tag>latest</tag>
+                                    <tag>${project.version}</tag>
+                                </tags>
+                            </build>
+                            <run>
+                                <containerNamePattern>%a</containerNamePattern>
+                                <ports>
+                                    <!-- 포트 매핑이 안된다 -->
+                                    <port>8807:8807</port>
+                                </ports>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
