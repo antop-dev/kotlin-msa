@@ -2,6 +2,9 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=antop-dev_kotlin-msa&metric=alert_status)](https://sonarcloud.io/dashboard?id=antop-dev_kotlin-msa)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=antop-dev_kotlin-msa&metric=coverage)](https://sonarcloud.io/dashboard?id=antop-dev_kotlin-msa)
 [![Coverage Status](https://coveralls.io/repos/github/antop-dev/kotlin-msa/badge.svg?branch=master)](https://coveralls.io/github/antop-dev/kotlin-msa?branch=master)
+[![GitHub forks](https://img.shields.io/github/forks/antop-dev/kotlin-msa.svg)](https://github.com/antop-dev/kotlin-msa/network)
+[![GitHub stars](https://img.shields.io/github/stars/antop-dev/kotlin-msa.svg)](https://github.com/antop-dev/kotlin-msa/stargazers)
+[![GitHub license](https://img.shields.io/github/license/antop-dev/kotlin-msa.svg)](https://github.com/antop-dev/kotlin-msa/blob/master/LICENSE)
 
 # 코틀린 마이크로서비스 개발
 
@@ -42,4 +45,3 @@ https://www.jetbrains.com/help/idea/docker.html
     무조건 `${groupId}/${articleId}/${version}`으로 생성된다.
 
 * `<port>` 매핑이 안된다.
-
