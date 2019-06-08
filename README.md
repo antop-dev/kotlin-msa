@@ -45,3 +45,14 @@ https://www.jetbrains.com/help/idea/docker.html
     무조건 `${groupId}/${articleId}/${version}`으로 생성된다.
 
 * `<port>` 매핑이 안된다.
+
+## Chapter 08
+
+* `docker push` 할 때 `localhost` 키워드에 대한 이슈가 생김 `127.0.0.1`로 하면 된다.
+
+  ```
+  > docker tag hello 127.0.0.1:5000/hello
+  > docer push 127.0.0.1:5000/hello 
+  ```
+
+* https://swarmpit.io/
