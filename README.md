@@ -2,6 +2,9 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=antop-dev_kotlin-msa&metric=alert_status)](https://sonarcloud.io/dashboard?id=antop-dev_kotlin-msa)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=antop-dev_kotlin-msa&metric=coverage)](https://sonarcloud.io/dashboard?id=antop-dev_kotlin-msa)
 [![Coverage Status](https://coveralls.io/repos/github/antop-dev/kotlin-msa/badge.svg?branch=master)](https://coveralls.io/github/antop-dev/kotlin-msa?branch=master)
+[![GitHub forks](https://img.shields.io/github/forks/antop-dev/kotlin-msa.svg)](https://github.com/antop-dev/kotlin-msa/network)
+[![GitHub stars](https://img.shields.io/github/stars/antop-dev/kotlin-msa.svg)](https://github.com/antop-dev/kotlin-msa/stargazers)
+[![GitHub license](https://img.shields.io/github/license/antop-dev/kotlin-msa.svg)](https://github.com/antop-dev/kotlin-msa/blob/master/LICENSE)
 
 # 코틀린 마이크로서비스 개발
 
@@ -45,28 +48,11 @@ https://www.jetbrains.com/help/idea/docker.html
 
 ## Chapter 08
 
-https://swarmpit.io/
+* `docker push` 할 때 `localhost` 키워드에 대한 이슈가 생김 `127.0.0.1`로 하면 된다.
 
-* `Ubuntu 16 + Docker` 에서 `pull` 안됨... ㅜㅜ
+  ```
+  > docker tag hello 127.0.0.1:5000/hello
+  > docer push 127.0.0.1:5000/hello 
+  ```
 
-```
-> docker tag hello localhost:5000/hello
-> docer push localhost:5000/hello 
-The push refers to repository [localhost:5000/hello]
-Get http://localhost:5000/v2/: net/http: request canceled (Client.Timeout exceeded while awaiting headers)
-```
-
-그래서 일단은 개인 `Dockerhub`에 올림..
-
-```
-> docker tag hello antop/hello
-> docer push antop/hello
-The push refers to repository [docker.io/antop/hello]
-6efafc80bd56: Pushed
-ceaf9e1ebef5: Mounted from library/openjdk
-9b9b7f3d56a0: Pushed
-f1b5933fe4b5: Mounted from library/alpine
-latest: digest: sha256:a0062ba9dc62015e137500d5b9d61428359197aa498ecfe3601ada2335ea22e4 size: 1159
-```
-
-또는 `127.0.0.1:5000/hello`로 사용 가능.
+* https://swarmpit.io/
