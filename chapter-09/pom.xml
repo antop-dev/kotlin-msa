@@ -13,10 +13,24 @@
     <name>chapter-09</name>
     <description>스프링 마이크로서비스 테스트</description>
 
+    <repositories>
+        <repository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.amshove.kluent/kluent -->
+        <dependency>
+            <groupId>org.amshove.kluent</groupId>
+            <artifactId>kluent</artifactId>
+            <version>1.50</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
