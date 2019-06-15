@@ -1,0 +1,37 @@
+server:
+  port: 8810
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /management
+  health:
+    db:
+      enabled: false
+    mongo:
+      enabled: false
+    redis:
+      enabled: false
+
+spring:
+  data:
+    mongodb:
+      database: microservices
+      uri: mongodb://localhost
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 2
+      pool-name: hikari-cp
+    password: antop
+    url: jdbc:mariadb://192.168.2.128/antop
+    username: antop
+  redis:
+    host: 192.168.2.128
+    password: antop
