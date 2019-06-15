@@ -56,3 +56,24 @@ https://www.jetbrains.com/help/idea/docker.html
   ```
 
 * https://swarmpit.io/
+
+## Chapter 10
+
+* [Spring Boot 2.x Actuator](https://www.baeldung.com/spring-boot-actuators#boot-2x-actuator)
+
+* `HealthIndicator` 이름은 어떻게 정해질까?
+    `org.springframework.boot.actuate.health.HealthIndicatorNameFactory`
+    ```java
+    public class HealthIndicatorNameFactory implements Function<String, String> {
+    
+    	@Override
+    	public String apply(String name) {
+    		int index = name.toLowerCase(Locale.ENGLISH).indexOf("healthindicator");
+    		if (index > 0) {
+    			return name.substring(0, index);
+    		}
+    		return name;
+    	}
+    
+    }
+    ```
