@@ -78,10 +78,64 @@ https://www.jetbrains.com/help/idea/docker.html
     }
     ```
     
-## Chapter11
+## Chapter 11
 
-![Imgur](https://i.imgur.com/kOMYE2F.png)
+책에 있는 내용과 다른 부분이 있어서 남긴다... 이것도 시간이 흐르면 UI가 바뀌어서 소용 없어지겠지? ㅠㅠ
 
-```
-oc login --token=.......... --server=https://api.us-west-2.online-starter.openshift.com:6443
-```
+* CLI 사용법
+
+    상단 GNB의 `?` 아이콘 → Command Line Tools → 아래 Copy Login Command 링크 클릭 → `Display Token` 링크 클릭 하면 로그인 명령어가 나옴 
+
+    ![Imgur](https://i.imgur.com/kOMYE2F.png)
+    
+    ```
+    oc login --token=.......... --server=https://api.us-west-2.online-starter.openshift.com:6443
+    ```
+
+* [Triggering Builds](https://docs.openshift.com/container-platform/3.5/dev_guide/builds/triggering_builds.html)
+
+    Builds → Build Configs → `customers` 선택 → `YAML` 탭에서 `GitHub` type을 추가해줘야 한다.
+    
+    ```yaml
+    # 생략
+      triggers:
+        - type: ImageChange
+          imageChange:
+            lastTriggeredImageID: >-
+              http://....
+        - type: ConfigChange
+        # 여기
+        - type: GitHub
+          github:
+            secret: secret101 # 비밀!
+    ```
+    
+    저장 후 CLI 로 명령어를 치면 `Webhook GitHub` 주소가 나오게 된다.
+    
+    ```bash
+    > oc describe bc/customers
+    # 생략
+    Webhook GitHub:
+          URL:    https://...:6443/apis/build.openshift.io/v1/namespaces/kotlin-msa/buildconfigs/customers/webhooks/<secret>/github
+    ```
+    
+    `<secret>` 부분을 Config 에서 입력했던 secret 값으로 변경해서 GitHub Webhooks 설정의 `Payload URL`에 넣어주면 된다.
+    
+* The build pod was killed due to an out of memory condition
+
+    메이븐 빌드 중에 out of memory 가 나면서 `kill` 당했다...
+    
+    ```bash
+    [INFO] Building jar: /tmp/src/target/customers-0.0.1.jar
+    /opt/jboss/container/maven/default//maven.sh: line 73:   269 Killed                  mvn $MAVEN_ARGS $goals
+    subprocess exited with status 137
+    subprocess exited with status 137
+    error: build error: error building at STEP "RUN /usr/local/s2i/assemble": exit status 137
+    ```
+    
+    ![Imgur](https://i.imgur.com/8EMHKxk.png)
+
+    [Advanced Build Operations](https://docs.openshift.com/container-platform/3.5/dev_guide/builds/advanced_build_operations.html)
+    
+    결론은... 그냥 다시 하니까 되네..? ㅠㅠ
+    
