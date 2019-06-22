@@ -1,5 +1,6 @@
-package com.microservices.chapter12
+package com.microservices.chapter12.domains.customers.controller
 
+import com.microservices.chapter12.domains.customers.services.CustomerService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController

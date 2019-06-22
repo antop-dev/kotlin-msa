@@ -1,4 +1,6 @@
-package com.microservices.chapter12
+package com.microservices.chapter12.domains.accounts.services
+
+import com.microservices.chapter12.domains.accounts.model.Account
 
 class AccountServiceImpl : AccountService {
     override fun getAccountsByCustomer(customerId: Int): List<Account> =

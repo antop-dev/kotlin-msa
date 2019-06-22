@@ -1,4 +1,7 @@
-package com.microservices.chapter12
+package com.microservices.chapter12.domains.customers.services
+
+import com.microservices.chapter12.domains.accounts.services.AccountService
+import com.microservices.chapter12.domains.customers.model.Customer
 
 class CustomerServiceImpl(val accountService: AccountService) : CustomerService {
     override fun getCustomer(id: Int): Customer {
