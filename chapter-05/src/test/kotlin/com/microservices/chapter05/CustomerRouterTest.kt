@@ -65,8 +65,7 @@ class CustomerRouterTest {
     fun customers() {
         val list = webClient.get().uri("/customers").exchange().expectStatus().isOk
                 .expectBodyList(Customer::class.java).returnResult().responseBody
-        Assert.assertEquals("Kotlin", list[0].name)
-        Assert.assertEquals("Spring", list[1].name)
-
+        Assert.assertEquals("Kotlin", list?.get(0)?.name)
+        Assert.assertEquals("Spring", list?.get(1)?.name)
     }
 }

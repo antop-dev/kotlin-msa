@@ -1,6 +1,5 @@
 package com.microservices.chapter04
 
-import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -11,7 +10,6 @@ import org.springframework.http.HttpHeaders
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.expectBody
-import org.springframework.test.web.reactive.server.expectBodyList
 import reactor.core.publisher.Mono
 
 @RunWith(SpringRunner::class)
@@ -37,9 +35,10 @@ class CustomerControllerTest {
 
     @Test
     fun getCustomers() {
-        val list = webClient.get().uri("/customers").exchange().expectStatus().isOk
-                .expectBodyList<Customer>().returnResult().responseBody
-        assertEquals("Kotlin", list[0].name)
+        val list = webClient.get().uri("/customers").exchange()
+                .expectStatus().isOk
+                .expectBody()
+                .jsonPath("\$[0].name", "Kotlin").hasJsonPath()
     }
 
     @Test

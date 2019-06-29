@@ -1,7 +1,6 @@
 package com.microservices.chapter04
 
 import org.hamcrest.Matchers
-import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -12,7 +11,6 @@ import org.springframework.http.HttpHeaders
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.expectBody
-import org.springframework.test.web.reactive.server.expectBodyList
 import reactor.core.publisher.Mono
 
 
@@ -41,9 +39,11 @@ class CustomerRouterTest {
 
     @Test
     fun search() {
-        val list = webClient.get().uri("/functional/customers").exchange().expectStatus().isOk
-                .expectBodyList<Customer>().returnResult().responseBody
-        assertEquals("Spring", list[1].name)
+        webClient.get().uri("/functional/customers")
+                .exchange()
+                .expectStatus().isOk
+                .expectBody()
+                .jsonPath("\$[1].name", "Spring").hasJsonPath()
     }
 
     @Test
@@ -68,10 +68,9 @@ class CustomerRouterTest {
                 .header(HttpHeaders.CONTENT_TYPE, "application/json")
                 .exchange()
                 .expectStatus().isBadRequest
-                .expectBody<ErrorResponse>()
-                .isEqualTo(
-                        ErrorResponse("error creating customer", "Customer ${customer.id} already exist")
-                )
+                .expectBody()
+                .jsonPath("\$.error", "error creating customer").hasJsonPath()
+                .jsonPath("\$.message", "Customer ${customer.id} already exist").hasJsonPath()
 
     }
 
