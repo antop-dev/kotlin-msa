@@ -92,12 +92,22 @@ https://www.jetbrains.com/help/idea/docker.html
     oc login --token=.......... --server=https://api.us-west-2.online-starter.openshift.com:6443
     ```
 
-* [Triggering Builds](https://docs.openshift.com/container-platform/3.5/dev_guide/builds/triggering_builds.html)
+* [Triggering Builds](https://docs.openshift.com/container-platform/3.9/dev_guide/builds/triggering_builds.html#github-webhooks)
 
-    Builds → Build Configs → `customers` 선택 → `YAML` 탭에서 `GitHub` type을 추가해줘야 한다.
+    Workloads → Secrets
+    
+    Create 버튼 클릭 → Webhook Secret 선택
+        
+    ![Imgur](https://i.imgur.com/qgNl3Nb.png)
+    
+    Secret Name 입력 → Generate 버튼 클릭 → `Webhook Secret Key` 만들어짐 
+    
+    ![Imgur](https://i.imgur.com/JsD4KWP.png)
+
+    Builds → Build Configs → `customers` 선택 → `YAML` 탭에서 `GitHub type`을 추가.
     
     ```yaml
-    # 생략
+      # 생략
       triggers:
         - type: ImageChange
           imageChange:
@@ -107,20 +117,29 @@ https://www.jetbrains.com/help/idea/docker.html
         # 여기
         - type: GitHub
           github:
-            secret: secret101 # 비밀!
+            secretReference:
+              name: kotlin-msa # Secrets Name
     ```
     
-    저장 후 CLI 로 명령어를 치면 `Webhook GitHub` 주소가 나오게 된다.
+    저장 후 Overview를 확인하면 아래와 같이 주소가 나오게 된다.
     
-    ```bash
-    > oc describe bc/customers
+    ![Imgur](https://i.imgur.com/Qol3BUb.png)
+    
+    `<secret>` 부분을 생성된 `Webhook Secret Key` 값으로 변경해서 GitHub Webhooks 설정의 `Payload URL`에 넣어주면 된다.
+
+* [Git Repository Source Options](https://docs.openshift.com/enterprise/3.2/dev_guide/builds.html#source-code)
+
+    현재 Git 저장소에 디렉터리로 여러개의 프로젝트가 구성되어 있다. 이 때 `openshift`에 `chapter-11` 프로젝트만 배포하고 싶을 때 아래와 같은 옵션을 사용하면 된다.
+    
+    ```yaml
     # 생략
-    Webhook GitHub:
-          URL:    https://...:6443/apis/build.openshift.io/v1/namespaces/kotlin-msa/buildconfigs/customers/webhooks/<secret>/github
+      source:
+        type: Git
+        git:
+          uri: 'https://github.com/antop-dev/kotlin-msa.git'
+        contextDir: chapter-11 # 지정
     ```
-    
-    `<secret>` 부분을 Config 에서 입력했던 secret 값으로 변경해서 GitHub Webhooks 설정의 `Payload URL`에 넣어주면 된다.
-    
+
 * The build pod was killed due to an out of memory condition
 
     메이븐 빌드 중에 out of memory 가 나면서 `kill` 당했다...
@@ -135,7 +154,5 @@ https://www.jetbrains.com/help/idea/docker.html
     
     ![Imgur](https://i.imgur.com/8EMHKxk.png)
 
-    [Advanced Build Operations](https://docs.openshift.com/container-platform/3.5/dev_guide/builds/advanced_build_operations.html)
-    
-    결론은... 그냥 다시 하니까 되네..? ㅠㅠ
+    [Advanced Build Operations](https://docs.openshift.com/container-platform/3.5/dev_guide/builds/advanced_build_operations.html) 찾아보고 있었는데... 그냥 다시 하니까 되네..? ㅠㅠ
     
